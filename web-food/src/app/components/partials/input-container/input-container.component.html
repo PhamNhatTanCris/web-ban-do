@@ -1,1 +1,13 @@
-<p>input-container works!</p>
+<div class="container" [ngStyle]="{'backgroundColor': bgColor}">
+  <label for="">
+    {{label}}
+  </label>
+
+  <div class="content">
+    <ng-content #name>
+      
+    </ng-content>
+
+  </div>
+
+</div>
