@@ -1,0 +1,3 @@
+<div class="container" *ngIf="tag">
+  <a *ngFor="let tags of tag" [routerLink]="'/tag/'+ tags.name">{{tags.name}}({{tags.count}})</a>
+</div>
