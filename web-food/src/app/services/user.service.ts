@@ -3,8 +3,9 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../shared/model/user';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
-import { USER_LOGIN_URL } from '../shared/constants/urls';
+import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
+import { IUserRegister } from '../shared/interfaces/IUserRegister';
 
 
 const USER_KEY = 'User';
@@ -17,6 +18,10 @@ export class UserService {
   public userObservable: Observable<User>;
   constructor(private _http: HttpClient, private _toastrService: ToastrService) {
     this.userObservable = this.userSubject.asObservable();
+  }
+
+  public get currentUser() : User{
+    return this.userSubject.value;
   }
 
   login(userLogin: IUserLogin): Observable<User>{
@@ -36,6 +41,27 @@ export class UserService {
 
       })
     );
+  }
+
+  register(userRegister: IUserRegister) : Observable<User>{
+    return this._http.post<User>(USER_REGISTER_URL, userRegister).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          this._toastrService.success(
+            'Welcome to the Foodmine!',
+            'Register successfull'
+          )
+        },
+        error: (errorRespone) => {
+          this._toastrService.error(
+            errorRespone.error,
+            'Register failed'
+          )
+        }
+      })
+    )
   }
 
   logout(){

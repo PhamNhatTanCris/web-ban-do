@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
   isSubmitted = false;
-  returnUrl ='';
+  returnUrl = '';
   constructor(
     private _formBuilder: FormBuilder,
     private _userService: UserService,
@@ -37,11 +37,11 @@ export class LoginPageComponent implements OnInit {
   submit() {
     this.isSubmitted = true;
     if (this.loginForm.invalid) return;
-
+    
     this._userService.login({
       email: this.fc.email.value,
       password: this.fc.password.value,
-    }).subscribe( () => {
+    }).subscribe(() => {
       this._router.navigateByUrl(this.returnUrl);
     })
   }

@@ -1,0 +1,9 @@
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Nhập ngày sinh</mat-label>
+    <input matInput [matDatepicker]="dp" [formControl]="date">
+    <mat-hint>DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+  </mat-form-field>
+</div>

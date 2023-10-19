@@ -4,7 +4,7 @@ import { Tag } from "./shared/model/tag";
 
 export const sample_foods: food[] = [
   {
-    id: 1,
+    id: '1',
     name: 'Pizza Pepperoni',
     cookTime: '10-20',
     price: 10,
@@ -15,7 +15,7 @@ export const sample_foods: food[] = [
     tags: ['FastFood', 'Pizza', 'Lunch'],
   },
   {
-    id: 2,
+    id: '2',
     name: 'Meatball',
     price: 20,
     cookTime: '20-30',
@@ -26,7 +26,7 @@ export const sample_foods: food[] = [
     tags: ['SlowFood', 'Lunch'],
   },
   {
-    id: 3,
+    id: '3',
     name: 'Hamburger',
     price: 5,
     cookTime: '10-15',
@@ -37,7 +37,7 @@ export const sample_foods: food[] = [
     tags: ['FastFood', 'Hamburger'],
   },
   {
-    id: 4,
+    id: '4',
     name: 'Fried Potatoes',
     price: 2,
     cookTime: '15-20',
@@ -48,7 +48,7 @@ export const sample_foods: food[] = [
     tags: ['FastFood', 'Fry'],
   },
   {
-    id: 5,
+    id: '5',
     name: 'Chicken Soup',
     price: 11,
     cookTime: '40-50',
@@ -59,7 +59,7 @@ export const sample_foods: food[] = [
     tags: ['SlowFood', 'Soup'],
   },
   {
-    id: 6,
+    id: '6',
     name: 'Vegetables Pizza',
     price: 9,
     cookTime: '40-50',

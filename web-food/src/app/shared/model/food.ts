@@ -1,5 +1,5 @@
 export class food {
-  id!: number;
+  id!: string;
   name!: string;
   price!: number;
   tags?: string[];

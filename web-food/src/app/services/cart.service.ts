@@ -12,23 +12,23 @@ export class CartService {
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
   constructor() { }
 
-  addToCart(foods: food): void{
+  addToCart(foods: food): void {
     let cartItem = this.cart.items.find(item => item.foods.id == foods.id)
-    if(cartItem){
+    if (cartItem) {
       return;
     }
     this.cart.items.push(new CartItem(foods));
     this.setCartToLocalStorage();
   }
 
-  removeFromCart(foodId: number): void {
-    this.cart.items = this.cart.items.filter(item => item.foods.id != foodId );
+  removeFromCart(foodId: string): void {
+    this.cart.items = this.cart.items.filter(item => item.foods.id != foodId);
     this.setCartToLocalStorage();
   }
 
-  changeQuantity(foodId: number, quantity: number){
+  changeQuantity(foodId: string, quantity: number) {
     let cartItem = this.cart.items.find(item => item.foods.id === foodId)
-    if(!cartItem){
+    if (!cartItem) {
       return;
     }
 
@@ -37,16 +37,20 @@ export class CartService {
     this.setCartToLocalStorage();
   }
 
-  clearCart(){
+  clearCart() {
     this.cart = new Cart();
     this.setCartToLocalStorage();
   }
 
-  getCartObservable(): Observable<Cart>{
+  getCartObservable(): Observable<Cart> {
     return this.cartSubject.asObservable();
   }
 
-  private setCartToLocalStorage():void {
+  getCart(): Cart{
+    return this.cartSubject.value;
+  }
+
+  private setCartToLocalStorage(): void {
     this.cart.totalPrice = this.cart.items.reduce((prevSum, currentItem) => prevSum + currentItem.price, 0);
 
     this.cart.totalCount = this.cart.items
@@ -60,6 +64,8 @@ export class CartService {
 
   private getCartFromLocalStorage(): Cart {
     const cartJson = localStorage.getItem('Cart');
-    return cartJson? JSON.parse(cartJson): new Cart();
+    return cartJson ? JSON.parse(cartJson) : new Cart();
   }
+
+
 }
